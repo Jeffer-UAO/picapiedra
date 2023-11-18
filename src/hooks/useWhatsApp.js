@@ -1,0 +1,24 @@
+import { useState } from "react";
+
+export function useWhatsApp() {
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const items = ["+573167122223", "+573174037824"];
+
+  const handleItemClick = (index) => {
+    setSelectedItem(index);
+  };
+
+  const generateWhatsAppLink = (phoneNumber, message) => {
+    const url = `https://wa.me/${phoneNumber}`;
+    const encodedMessage = encodeURIComponent(message);
+    return `${url}?text=${encodedMessage}`;
+  };
+
+  return {
+    items,
+    selectedItem,
+    handleItemClick,
+    generateWhatsAppLink,
+  };
+}

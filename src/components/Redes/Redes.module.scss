@@ -1,0 +1,21 @@
+.space {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+
+  p {
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(219,250,0,1) 18%, rgba(219,250,0,1) 51%, rgba(219,250,0,1) 72%, rgba(255,255,255,1) 100%);
+    
+    color: rgb(237, 10, 89);
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .space {
+    max-width: 0; /* Ajusta el tamaño máximo para pantallas más grandes de 600px */
+  }
+}

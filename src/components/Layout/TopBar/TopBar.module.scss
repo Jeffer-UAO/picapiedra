@@ -1,0 +1,19 @@
+.topBarComponent .topBar > a > img {
+  max-width: 400px;
+}
+
+/* Media query para pantallas más grandes de 600px */
+@media screen and (min-width: 601px) {
+  .topBarComponent .topBar > a > img {
+    max-width: 0px; /* Ajusta el tamaño máximo para pantallas más grandes de 600px */
+  }
+
+
+ 
+
+
+  .redes {
+    // background-color: black;
+    position: sticky;
+  }
+}
