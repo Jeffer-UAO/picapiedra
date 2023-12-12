@@ -13,10 +13,11 @@ export function ListCart(props) {
   const { product } = props;
   const { decreaseCart, incrementCart, deleteCart } = useCart();
   const format = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Cambia 'es-ES' por tu configuración regional
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
   };
 
-  console.log(product);
+  const scale = "c_scale,f_auto,q_50,w_150/";
+  const upload = 'image/upload/';
 
   return (
     <div className={styles.list}>
@@ -27,7 +28,8 @@ export function ListCart(props) {
             {item.images ? (
               <CardImg
                 alt="Card image cap"
-                src={BASE_NAME + item.images}
+                src={BASE_NAME + upload +
+                  scale + item.images.split(upload)[1]}
                 className={styles.skeleton}
               />
             ) : (
