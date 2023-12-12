@@ -2,11 +2,29 @@
 
 * {
 }
+label{
+  color: aliceblue;
+}
+
+// .btn{
+//   background-color: #ff8000 !important;
+// }
+.modal {
+  .modal-header {
+    background-color: #404040;
+  }
+  .modal-body {
+    background-color: #111111;
+  }
+  .modal-footer {
+    background-color: #404040;
+  }
+}
 
 body {
   margin: 0;
   background-color: $backgroud-ligth;
-  background-color: #1c1c1c;
+  background-color: $primary;
 }
 
 h1 {
@@ -42,3 +60,6 @@ a:link {
 a:visited {
   text-decoration: none;
 }
+ ul{
+  margin: 0;
+ }

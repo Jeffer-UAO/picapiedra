@@ -8,7 +8,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  FormGroup,
 } from "reactstrap";
 
 import { BsTrash3 } from "react-icons/bs";

@@ -16,12 +16,14 @@ export function ListCart(props) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Cambia 'es-ES' por tu configuración regional
   };
 
-  return (
+  console.log(product);
 
-      <div className={styles.list}>
-        <h4>CARRITO</h4>
-        {map(product, (item) => (
-          <div key={item.codigo} className={styles.card}>
+  return (
+    <div className={styles.list}>
+      <h4>CARRITO</h4>
+      {map(product, (item, index) => (
+        <div className={styles.content}>
+          <div key={index} className={styles.card}>
             {item.images ? (
               <CardImg
                 alt="Card image cap"
@@ -39,23 +41,24 @@ export function ListCart(props) {
             <div className={styles.detalle}>
               <p className={styles.name}>{item.name_extend}</p>
               <p className={styles.price}>$ {format(item.price1)} </p>
+
               <div className={styles.btn}>
                 <span>
                   <AiOutlineMinusCircle
-                    onClick={() => decreaseCart(item.codigo)}
+                    onClick={() => decreaseCart(index)}
                     size={30}
                     color="grey"
                   />
                   <p>{item.quantity}</p>
                   <AiFillPlusCircle
-                    onClick={() => incrementCart(item.codigo)}
+                    onClick={() => incrementCart(index)}
                     size={30}
                     color="green"
                   />
                 </span>
 
                 <Button
-                  onClick={() => deleteCart(item.codigo)}
+                  onClick={() => deleteCart(index)}
                   className={styles.btnDelete}
                 >
                   <BsTrash3 size="15" color="red" />
@@ -63,8 +66,14 @@ export function ListCart(props) {
               </div>
             </div>
           </div>
-        ))}
-      </div>
- 
+          <ul className={styles.sauce_list}>
+            {map(item.sauces, (data) => (
+              <li>{data} &ensp; </li>
+            ))}
+          </ul>
+          <p>Observaciones:Sin cebolla y bien caliente</p>
+        </div>
+      ))}
+    </div>
   );
 }

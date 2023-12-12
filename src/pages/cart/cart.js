@@ -31,7 +31,7 @@ export default function CartPage() {
         const data = [];
         for await (const item of cart) {
           const response = await productCtrl.getProductById(item.id);
-          data.push({ ...response, quantity: item.quantity });
+          data.push({ ...response, quantity: item.quantity, sauces: item.sauces });
         }
         setProduct(data);
         setLoad(false);

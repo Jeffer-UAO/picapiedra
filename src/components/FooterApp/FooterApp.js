@@ -61,7 +61,7 @@ export function FooterApp() {
         </div>
 
         <BtnLink
-          link={"https://distribucionesduque.catalogointeractivo.com.co/admin-dashboard/"}
+          link={"https://picapiedra.suprainnovations.store/admin-dashboard/"}
           title={"ADMI"}
           logo={<CiUser size={20} color="black" />}
         />

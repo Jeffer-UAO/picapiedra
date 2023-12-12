@@ -1,8 +1,7 @@
 .btnlink {
   border-radius: 0.7rem;
   button {
-    background: rgb(149,153,76);
-    background: linear-gradient(0deg, rgba(149,153,76,1) 0%, rgba(219,250,0,1) 18%, rgba(219,250,0,1) 51%, rgba(219,250,0,1) 72%, rgba(149,153,76,1) 100%);
+  background-color: #ffd814;
     height: 2.2rem;
     margin: 0.5rem;
     border: 0;
@@ -12,7 +11,7 @@
 
   @media screen and (max-width: 370px) {
     button {
-      width: 3.2rem;
+      width: 4rem;
     }
   }
 }

@@ -3,12 +3,12 @@
   position: fixed;
   bottom: 0;
   justify-content: center;
- border-top: solid 1px rgb(82, 82, 82);
+
 
   .paneluser {
    
     display: flex;
-    background-color: #000000;
+    background-color: #191919;
     align-items: center;
     width: 100vw;
     justify-content: space-between;
@@ -22,7 +22,7 @@
       justify-content: center;
       align-items: center;
       position: absolute;
-      background-color:  rgb(226, 119, 5);
+      background-color:  rgb(255, 5, 5);
       color: rgb(255, 255, 255);
       font-weight: 800;
       font-size: 13px;

@@ -2,55 +2,42 @@ import { forEach } from "lodash";
 import { CART } from "../config/constants";
 
 export class Cart {
-  add(itemId, quantity) {
+  add(itemId, quantity, sauces) {
     const products = this.getAll();
-
     const objIndex = products.findIndex((product) => product.id === itemId);
 
-    if (objIndex < 0) {
-      products.push({
-        id: itemId,
-        quantity,
-      });
-    } else {
-      const product = products[objIndex];
-      products[objIndex].quantity = product.quantity + quantity;
-    }
+    products.push({
+      id: itemId,
+      quantity,
+      sauces,
+    });
+
     localStorage.setItem(CART, JSON.stringify(products));
   }
 
-  decrease(itemId) {
-    const products = this.getAll();
-
-    const objIndex = products.findIndex((product) => product.id === itemId);
-
-    if (objIndex >= 0) {
+  decrease(objIndex) {
+    const products = this.getAll();   
       const product = products[objIndex];
       if (product.quantity > 1) {
         products[objIndex].quantity = product.quantity - 1;
         localStorage.setItem(CART, JSON.stringify(products));
       } else {
-        this.delete(itemId);
-      }
-    }
+        this.delete(objIndex);
+      } 
   }
 
-  increment(itemId) {
+  increment(objIndex) {
     const products = this.getAll();
-
-    const objIndex = products.findIndex((product) => product.id === itemId);
-
-    if (objIndex >= 0) {
-      const product = products[objIndex];
-      products[objIndex].quantity = product.quantity + 1;
-      localStorage.setItem(CART, JSON.stringify(products));
-    }
+    const product = products[objIndex];
+    products[objIndex].quantity = product.quantity + 1;
+    localStorage.setItem(CART, JSON.stringify(products));
   }
 
-  delete(itemId) {
+  delete(objIndex) {
+    console.log(objIndex);
     const products = this.getAll();
-    const objIndex = products.filter((product) => product.id !== itemId);
-    localStorage.setItem(CART, JSON.stringify(objIndex));
+    const filteredProducts = products.filter((product, index) => index !== objIndex);
+    localStorage.setItem(CART, JSON.stringify(filteredProducts));
   }
 
   getAll() {
@@ -62,10 +49,9 @@ export class Cart {
     }
   }
 
-  deleteAll(){
+  deleteAll() {
     localStorage.removeItem(CART);
   }
-
 
   count() {
     let count = 0;

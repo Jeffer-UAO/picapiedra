@@ -11,7 +11,7 @@ export function Listproducts(props) {
       <h4>{title}</h4>
       <div className={styles.product}>
         {map(products, (product, index) => (
-          <div key={index}>
+          <div key={index} className={styles.card}>
             {product.productData.active && (
               <>
                 {!product.productData.soldout ? (

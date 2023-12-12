@@ -1,0 +1,54 @@
+.sauce_name{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.1rem 1rem 0 1rem;
+  p{  
+    text-transform: uppercase;
+  }
+
+  .theme_toggle {
+    position: relative;
+  
+    .checkbox {
+      display: none;
+    }
+  
+    .label {
+      display: flex;
+      cursor: pointer;
+      width: 61px;
+      height: 30px;
+  
+      padding: 3px 3px 3px 10px;
+      background-color: #000000;
+      color: #fff;
+      border-radius: 15px;
+      transition: background-color 0.3s ease;
+     label{
+        padding-right: 7px;
+      }
+    }
+  
+    .checkbox:checked + .label {
+      background-color: #4caf50; /* Color cuando está activado */
+    }
+  
+    .label::before {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #dfdfdf;
+      top: 0;
+      left: 0;
+      transition: transform 0.3s ease;
+    }
+  
+    .checkbox:checked + .label::before {
+      transform: translateX(30px);
+    }
+  }
+}
+

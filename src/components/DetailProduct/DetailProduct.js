@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { map, size } from "lodash";
 import { BASE_NAME } from "@/config/constants";
-import { useWhatsApp, useGallery, useCart } from "@/hooks";
+import { useWhatsApp, useGallery, useCart, useAttribute } from "@/hooks";
 import { toast } from "react-toastify";
-import { Sauces } from "../Sauces";
+import { SaucesList } from "../Sauces";
 
 import { ImageCarousel } from "../ImageCarousel";
 
@@ -17,17 +17,21 @@ import {
   ModalFooter,
   FormGroup,
   Input,
+  Label,
 } from "reactstrap";
 
 import { BsWhatsapp } from "react-icons/bs";
 import styles from "./DetailProduct.module.scss";
+import { BtnCircle, BtnMagic } from "../Common";
 
 export function DetailProduct(props) {
   const { product, relate } = props;
   const { addCart } = useCart();
   const { getGalleryByCode, gallery } = useGallery();
+  const { getAttributeProduct, attribute, loading } = useAttribute();
   const { generateWhatsAppLink, items, selectedItem, handleItemClick } =
     useWhatsApp();
+
   const { ...productDetall } = product ?? {};
 
   const [productData, setProductData] = useState(productDetall[0]);
@@ -37,14 +41,35 @@ export function DetailProduct(props) {
   const [propductWhatsApp, setPropductWhatsApp] = useState("");
   const [propductAlternaWhatsApp, setPropductAlternaWhatsApp] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [total, setTotal] = useState(1);
+  const [sauces, setSauces] = useState([]);
+
 
   const format = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
   useEffect(() => {
-    getGalleryByCode(productData.codigo);
+    const nameSauces = attribute?.map((data) => data.dataAttribute.name);
+    setSauces(nameSauces);
+  }, [attribute]);
+
+  useEffect(() => {
+    getGalleryByCode(productData?.codigo);
   }, []);
+
+  const updateSauces = (sauceName, checked) => {
+    if (checked) {
+      setSauces((prevSauces) =>
+        prevSauces.filter((sauce) => sauce !== sauceName)
+      );
+    }
+    if (!checked) {
+      if (!sauces.includes(sauceName)) {
+        setSauces((prevSauces) => [...prevSauces, sauceName]);
+      }
+    }
+  };
 
   const changeDetail = (data) => {
     setProductData(data);
@@ -58,11 +83,12 @@ export function DetailProduct(props) {
 
   const addProductId = (id) => {
     setIdPropduct(id);
+    getAttributeProduct(id);
     openCloseModal();
   };
 
   const addData = () => {
-    addCart(idProduct, quantity);
+    addCart(idProduct, quantity, sauces);
     toast.success("¡Se agrego con exito!");
 
     openCloseModal();
@@ -73,6 +99,13 @@ export function DetailProduct(props) {
     setQuantity(value);
   };
 
+  const quantityChance = (quantity) => {
+    if (quantity > 0) {
+      setTotal(total + 1);
+    } else {
+      setTotal(total - 1);
+    }
+  };
   //-------------------------------------
 
   const toggleModal = () => {
@@ -116,23 +149,23 @@ export function DetailProduct(props) {
           <div className={styles.product} id="seccion-1">
             {size(gallery) > 0 ? (
               <ImageCarousel images={gallery} />
-            ) : productData.images ? (
+            ) : productData?.images ? (
               <CardImg
                 alt="Card image cap"
-                src={BASE_NAME + productData.images}
+                src={BASE_NAME + productData?.images}
               />
             ) : (
-              <CardImg alt="Card image cap" src={productData.image_alterna} />
+              <CardImg alt="Card image cap" src={productData?.image_alterna} />
             )}
 
             <div className={styles.description}>
               <CardTitle className={styles.title}>
                 <h5 className={styles.name_extend}>
-                  {productData.name_extend}
+                  {productData?.name_extend}
                 </h5>
                 <div className={styles.price}>
-                  {productData.price1 > 1 && (
-                    <h6>$ {format(productData.price1)} </h6>
+                  {productData?.price1 > 1 && (
+                    <h6>$ {format(productData?.price1)} </h6>
                   )}
                 </div>
               </CardTitle>
@@ -140,7 +173,7 @@ export function DetailProduct(props) {
               <Button onClick={() => addProductId(productData.codigo)}>
                 Agregar al Carrito
               </Button>
-              <p>{productData.description}</p>
+              <p>{productData?.description}</p>
             </div>
           </div>
 
@@ -191,36 +224,62 @@ export function DetailProduct(props) {
           </div>
 
           <Modal centered isOpen={showModal} toggle={openCloseModal}>
-            <ModalHeader toggle={openCloseModal}>Ingrese Cantidad</ModalHeader>
+            <ModalHeader toggle={openCloseModal}>Detalles del Pedido</ModalHeader>
 
             <ModalBody>
+              <FormGroup>
+                {map(attribute, (data, index) => (
+                  <SaucesList
+                    key={index}
+                    id={index}
+                    name={data.dataAttribute.name}
+                    process={updateSauces}
+                    
+                  />
+                ))}
 
-            <FormGroup>
-                <div className={styles.theme_toggle}>
-                  <input type="checkbox" id="toggle" className={styles.checkbox} />
-                  <label for="toggle" className={styles.label}>SI</label>
+                <div className={styles.content_btns}>
+                  <div className={styles.maxmin}>
+                    <BtnCircle
+                      btnType="minus"
+                      color="grey"
+                      f={quantityChance}
+                    />
+                    <label>{total}</label>
+                    <BtnCircle
+                      color="green"
+                      btnType="plus"
+                      f={quantityChance}
+                    />
+                    <label>Cantidad</label>
+                  </div>                 
                 </div>
 
-              Cantidad      
+                <FormGroup>
+                  <Label for="exampleText">Observaciónes</Label>
+                  <Input id="exampleText" name="text" type="textarea" />
+                </FormGroup>
 
-                <Input
-                  value={quantity}
-                  type="number"
-                  name="cantidad"
-                  id="cantidad"
-                  placeholder="Cantidad"
-                  onChange={handleQuantityChange}
-                />
+                {/* <div className={styles.input}>
+                  <Input
+                    value={quantity}
+                    type="number"
+                    name="cantidad"
+                    id="cantidad"
+                    placeholder="Cantidad"
+                    onChange={handleQuantityChange}
+                  />               
+                </div> */}
               </FormGroup>
             </ModalBody>
 
             <ModalFooter>
-              <Button color="primary" onClick={addData}>
-                Aceptar
-              </Button>{" "}
               <Button color="secondary" onClick={openCloseModal}>
                 Cancelar
               </Button>
+              <Button color="primary" onClick={addData}>
+                Aceptar
+              </Button>{" "}
             </ModalFooter>
           </Modal>
 

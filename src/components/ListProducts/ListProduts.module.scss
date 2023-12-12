@@ -1,23 +1,20 @@
 .listProduct {
   text-align: center;
- width: 100%;
- padding: 1rem;
- 
+  width: 100%;
+  padding: 0.5rem;
 
   h4 {
     text-transform: uppercase;
     margin-bottom: 0.5rem;
-    background: rgb(149,153,76);
-background: linear-gradient(0deg, rgba(149,153,76,1) 0%, rgba(219,250,0,1) 18%, rgba(219,250,0,1) 51%, rgba(219,250,0,1) 72%, rgba(149,153,76,1) 100%);
     border-radius: 0.3rem;
-    color: rgb(0, 0, 0);
-    padding: 0.3rem;
   }
 
-  .product {  
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-
+  .product {
+    column-gap: 0.5rem;
+    columns: 2;
+    .card {
+      margin-bottom: 0.5rem;
+      break-inside: avoid-column; /* Evita que una tarjeta se divida en dos columnas */
+    }
   }
 }
