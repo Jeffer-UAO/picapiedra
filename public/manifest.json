@@ -4,9 +4,9 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "DISTRIBUIDORA DUQUE",
-  "short_name": "Catálogo DISTRIBUIDORA DUQUE",
-  "description": "Catálogo DISTRIBUIDORA DUQUE",
+  "name": "PICAPIEDRA",
+  "short_name": "PICAPIEDRA",
+  "description": "PICAPIEDRA",
   "icons": [
     {
       "src": "/icon-192x192.png",
