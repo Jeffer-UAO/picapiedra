@@ -10,8 +10,7 @@ import { BsFacebook } from "react-icons/bs";
 export function Redes() {
   return (
     <div className={styles.space}>
-      <CardImg src="/image/logo.png" alt="Not Image" />{" "}
-      <p>Menú Digital</p>
+      <CardImg src="/image/logo.png" alt="Not Image" />{" "}    
     </div>
   );
 }

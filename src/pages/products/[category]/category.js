@@ -1,5 +1,5 @@
 import { size } from "lodash";
-import { Listproducts, Footer, NotFound, FooterApp } from "@/components";
+import { Listproducts, Footer, NotFound, FooterApp, Redes } from "@/components";
 
 export default function category(props) {
   const { products, category } = props;
@@ -7,6 +7,7 @@ export default function category(props) {
 
   return (
     <div>
+  <Redes />
       {hasProduct ? (
         <Listproducts products={products} title={category.name} />
       ) : (

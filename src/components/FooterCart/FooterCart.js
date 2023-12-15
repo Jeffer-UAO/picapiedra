@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useCart } from "@/hooks/useCart";
 import { useWhatsApp } from "@/hooks/useWhatsApp";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 import { BsTrash3 } from "react-icons/bs";
 import { BiArrowBack } from "react-icons/bi";
@@ -64,7 +58,7 @@ export function FooterCart(props) {
           onClick={() => toggleModal()}
         >
           <BsWhatsapp size={30} color="green" />
-          <p>Enviar Listado</p>
+          <p>Enviar Pedido</p>
         </Button>
 
         <BsTrash3 size="25" color="grey" onClick={confirmation} />

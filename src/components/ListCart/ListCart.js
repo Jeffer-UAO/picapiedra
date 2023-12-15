@@ -13,11 +13,12 @@ export function ListCart(props) {
   const { product } = props;
   const { decreaseCart, incrementCart, deleteCart } = useCart();
   const format = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
+  console.log(product);
   const scale = "c_scale,f_auto,q_50,w_150/";
-  const upload = 'image/upload/';
+  const upload = "image/upload/";
 
   return (
     <div className={styles.list}>
@@ -28,8 +29,7 @@ export function ListCart(props) {
             {item.images ? (
               <CardImg
                 alt="Card image cap"
-                src={BASE_NAME + upload +
-                  scale + item.images.split(upload)[1]}
+                src={BASE_NAME + upload + scale + item.images.split(upload)[1]}
                 className={styles.skeleton}
               />
             ) : (
@@ -73,7 +73,7 @@ export function ListCart(props) {
               <li>{data} &ensp; </li>
             ))}
           </ul>
-          <p>Observaciones:Sin cebolla y bien caliente</p>
+          {item.observation && <label>Observaciones: {item.observation}</label>}
         </div>
       ))}
     </div>

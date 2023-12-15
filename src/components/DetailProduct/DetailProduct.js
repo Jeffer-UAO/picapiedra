@@ -40,7 +40,7 @@ export function DetailProduct(props) {
   const [showModal, setShowModal] = useState(false);
   const [propductWhatsApp, setPropductWhatsApp] = useState("");
   const [propductAlternaWhatsApp, setPropductAlternaWhatsApp] = useState("");
-  const [quantity, setQuantity] = useState(1);
+  const [observation, setObservation] = useState("");
   const [total, setTotal] = useState(1);
   const [sauces, setSauces] = useState([]);
 
@@ -88,15 +88,14 @@ export function DetailProduct(props) {
   };
 
   const addData = () => {
-    addCart(idProduct, quantity, sauces);
+    addCart(idProduct, total, sauces, observation);
     toast.success("¡Se agrego con exito!");
-
     openCloseModal();
   };
 
   const handleQuantityChange = (event) => {
-    const value = parseInt(event.target.value);
-    setQuantity(value);
+    const text = event.target.value;
+    setObservation(text);
   };
 
   const quantityChance = (quantity) => {
@@ -173,12 +172,12 @@ export function DetailProduct(props) {
               <Button onClick={() => addProductId(productData.codigo)}>
                 Agregar al Carrito
               </Button>
-              <p>{productData?.description}</p>
+              <label>{productData?.description}</label>
             </div>
           </div>
 
           <div className={styles.relate}>
-            <p>PRODUCTOS RELACIONADOS</p>
+            {/* <p>PRODUCTOS RELACIONADOS</p> */}
 
             <div className={styles.list}>
               {map(relate, (product, index) => (
@@ -224,7 +223,9 @@ export function DetailProduct(props) {
           </div>
 
           <Modal centered isOpen={showModal} toggle={openCloseModal}>
-            <ModalHeader toggle={openCloseModal}>Detalles del Pedido</ModalHeader>
+            <ModalHeader toggle={openCloseModal}>
+              Detalles del Pedido
+            </ModalHeader>
 
             <ModalBody>
               <FormGroup>
@@ -234,7 +235,6 @@ export function DetailProduct(props) {
                     id={index}
                     name={data.dataAttribute.name}
                     process={updateSauces}
-                    
                   />
                 ))}
 
@@ -252,12 +252,18 @@ export function DetailProduct(props) {
                       f={quantityChance}
                     />
                     <label>Cantidad</label>
-                  </div>                 
+                  </div>
                 </div>
 
-                <FormGroup>
-                  <Label for="exampleText">Observaciónes</Label>
-                  <Input id="exampleText" name="text" type="textarea" />
+                <FormGroup>                  
+                  <Input
+                    id="observation"
+                    name="observation"
+                    type="textarea"
+                    value={observation}
+                    placeholder="Observaciónes"
+                    onChange={handleQuantityChange}
+                  />
                 </FormGroup>
 
                 {/* <div className={styles.input}>

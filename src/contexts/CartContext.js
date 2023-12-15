@@ -20,9 +20,9 @@ export function CartProvider(props) {
     setTotal(und);
   }, []);
 
-  const addCart = (itemId, quantity, sauces) => { 
+  const addCart = (itemId, quantity, sauces, observation) => { 
     setLoading(true);
-    cartCtrl.add(itemId, quantity, sauces);
+    cartCtrl.add(itemId, quantity, sauces, observation);
     refreshTotalCart();
     setLoading(false);    
   };

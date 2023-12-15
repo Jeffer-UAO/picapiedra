@@ -11,20 +11,20 @@ label{
 // }
 .modal {
   .modal-header {
-    background-color: #404040;
+    background-color: rgb(23, 24, 48);
   }
   .modal-body {
-    background-color: #111111;
+    background-color: #1b1b2b;
   }
   .modal-footer {
-    background-color: #404040;
+    background-color: rgb(23, 24, 48);
   }
 }
 
 body {
   margin: 0;
-  background-color: $backgroud-ligth;
-  background-color: $primary;
+   background-color: $backgroud-primary;
+  // background-color: $primary;
 }
 
 h1 {
@@ -63,3 +63,4 @@ a:visited {
  ul{
   margin: 0;
  }
+

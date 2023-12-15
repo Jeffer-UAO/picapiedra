@@ -2,7 +2,7 @@ import { forEach } from "lodash";
 import { CART } from "../config/constants";
 
 export class Cart {
-  add(itemId, quantity, sauces) {
+  add(itemId, quantity, sauces, observation) {
     const products = this.getAll();
     const objIndex = products.findIndex((product) => product.id === itemId);
 
@@ -10,6 +10,7 @@ export class Cart {
       id: itemId,
       quantity,
       sauces,
+      observation,
     });
 
     localStorage.setItem(CART, JSON.stringify(products));

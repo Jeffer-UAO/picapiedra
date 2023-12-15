@@ -39,15 +39,25 @@
           color: rgb(226, 119, 5);
           font-weight: 800;
         }
+        
       }
 
       button {
         width: 95% !important;
-        background-color: rgb(226, 119, 5);
+        background-color: #ffdf00;
+        color: black;
         border: none;          
       }
+      
       p{
         padding: 1rem 0.5rem;
+      }
+
+      label{
+        display: block;
+        margin: 5px;
+        font-size: .9rem;
+        color: rgb(138, 138, 138);
       }
     }
   }
@@ -56,10 +66,8 @@
     padding: 10px;
 
     p {
-
       margin-bottom: 10px;
-      font-size: 1rem;
-      background-color: #cf0606;
+      font-size: 1rem;  
     }
   }
 }
@@ -72,13 +80,7 @@
   &__product2 {
     background-color: rgb(254, 254, 254);
     position: relative;
-
     border-radius: 6px;
-
-    .name {
-      padding: 5px;
-      text-align: center;
-    }
 
     img {
       max-height: 25rem;

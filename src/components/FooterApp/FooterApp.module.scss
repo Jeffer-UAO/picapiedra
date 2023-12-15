@@ -3,16 +3,14 @@
   position: fixed;
   bottom: 0;
   justify-content: center;
-
-
+  
   .paneluser {
-   
     display: flex;
-    background-color: #191919;
+    background-color: rgb(23, 24, 48);
     align-items: center;
     width: 100vw;
     justify-content: space-between;
-    padding: 0.2rem;  
+    padding: 0.2rem;
   }
 
   .cart {
@@ -22,7 +20,7 @@
       justify-content: center;
       align-items: center;
       position: absolute;
-      background-color:  rgb(255, 5, 5);
+      background-color: rgb(255, 5, 5);
       color: rgb(255, 255, 255);
       font-weight: 800;
       font-size: 13px;
