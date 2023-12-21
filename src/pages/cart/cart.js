@@ -50,11 +50,10 @@ export default function CartPage() {
 
         for (const record of product) {
           const newRecord = {};
-
           for (const key in record) {
             if (
               Object.hasOwnProperty.call(record, key) &&
-              ["name_extend", "quantity", "images", "image_alterna", "observation"].includes(
+              ["name_extend", "quantity", "sauces", "observation"].includes(
                 key
               )
             ) {
@@ -66,6 +65,7 @@ export default function CartPage() {
             newObjectArray.push({
               Producto: newRecord.name_extend,
               Cantidad: newRecord.quantity,
+              Salsas: newRecord.sauces,
               // Imagen: BASE_NAME + newRecord.images,
               Observación: newRecord.observation,
             });
@@ -73,6 +73,7 @@ export default function CartPage() {
             newObjectArray.push({
               Producto: newRecord.name_extend,
               Cantidad: newRecord.quantity,
+              Salsas: newRecord.sauces,
               // Imagen: newRecord.image_alterna,
               Observación: newRecord.observation,
             });

@@ -15,7 +15,7 @@ export function FooterCart(props) {
   const { deleteAllCart } = useCart();
   const { items, selectedItem, handleItemClick } = useWhatsApp();
   const router = useRouter();
-
+console.log(product);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => {

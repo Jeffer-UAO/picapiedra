@@ -49,8 +49,10 @@ export function DetailProduct(props) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
+  
+  
   useEffect(() => {
-    const nameSauces = attribute?.map((data) => data.dataAttribute.name);
+    const nameSauces = attribute?.map((data) => data.dataAttribute.name); 
     setSauces(nameSauces);
   }, [attribute]);
 
