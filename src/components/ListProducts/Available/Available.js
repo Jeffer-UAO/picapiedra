@@ -125,13 +125,14 @@ export function Available(props) {
           {product.productData.price2 > 0 && <h6></h6>}
         </div>
       </div>
-
-      <Button
-        color="primary"
-        onClick={() => addProductId(product.productData.codigo)}
-      >
-        Agregar al Carrito
-      </Button>
+      {product.productData.price2 && (
+        <Button
+          color="primary"
+          onClick={() => addProductId(product.productData.codigo)}
+        >
+          Agregar al Carrito
+        </Button>
+      )}
 
       <Modal centered isOpen={isOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>Ingrese Cantidad</ModalHeader>
