@@ -105,7 +105,11 @@ export function DetailProduct(props) {
       setTotal(total + 1);
     } else {
       setTotal(total - 1);
+      if(total < 2){
+        setTotal(1);
+      }
     }
+   
   };
   //-------------------------------------
 
